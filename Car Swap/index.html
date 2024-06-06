@@ -15,7 +15,7 @@
     <title>CarSwap</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary p-4">
+    <nav class="navbar navbar-expand-lg p-4">
       <div class="container-fluid">
         <a class="navbar-brand fs-3" href="#">CarSwap</a>
         <button
@@ -32,12 +32,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto column-gap-3">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
-                >Shop Cars</a
-              >
+              <a class="nav-link active" aria-current="page" href="index.html">Shop Cars</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="signup.html">Login</a>
+              <a class="nav-link" href="login.html">Login</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="signup.html">Sign Up</a>
@@ -51,29 +49,26 @@
         </div>
       </div>
     </nav>
-    <div class="container-fluid mt-4">
-      <div class="container-fluid text-center">
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <img class="img-fluid" src="Assets/7957567.jpg" alt="" />
+    <div class="main">
+      <div class="main-container">
+        <div class="side1">
+          <div class="side1-container">
+            <img src="Assets/7957567.jpg" class="img-fluid" alt="..." />
           </div>
-          <div
-            class="col-12 col-md-6 d-flex flex-column justify-content-center text-start"
-          >
-            <h1 class="homepage-header">
-              <span class="car-shopping">Car Shopping </span>Made Easy
-            </h1>
-            <p class="homepage-description mt-2">
-              At CarSwap, we revolutionize the way you buy and sell cars. Our
-              platform is designed to make car shopping easy, transparent, and
-              enjoyable, whether you're a first-time buyer or a seasoned car
-              enthusiast.
+        </div>
+        <div class="side2">
+          <div class="side2-container">
+            <h1 class="tagline-header">Trade Up to <span class="highlight">Better Rides</h1>
+            <p class="tagline-description">
+              Welcome to CarSwap, the ultimate car buying marketplace where you
+              can seamlessly trade, buy, or sell vehicles with ease. Our
+              platform connects buyers and sellers, offering a vast selection of
+              cars to choose from, complete with detailed listings and secure
+              transactions.
             </p>
             <div class="buttons">
-              <button class="shop-button">
-                <i class="fa-solid fa-car"></i>&nbsp;&nbsp;Shop Cars
-              </button>
-              <button class="sell-button">Sell Car</button>
+              <button type="button" class="btn btn-primary btn-lg">Shop Cars</button>
+              <button type="button" class="btn btn-outline-success btn-lg">Signup Today</button>
             </div>
           </div>
         </div>
