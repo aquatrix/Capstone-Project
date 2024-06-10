@@ -1,0 +1,48 @@
+nav {
+  background-color: #adf7b6;
+}
+
+.main-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-card {
+  width: 70%;
+  height: 500px;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 10px;
+}
+
+.profile-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+}
+
+.avatar img {
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+}
+
+.profile-data {
+  width: 50%;
+  padding: 50px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 30px;
+}
