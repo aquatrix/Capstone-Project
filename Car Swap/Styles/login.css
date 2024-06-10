@@ -38,9 +38,12 @@ nav {
 
 .button {
   margin-top: 20px;
+<<<<<<< HEAD
   display: flex;
   gap: 20px;
   align-items: center;
+=======
+>>>>>>> ae7e38d72c56dab2091fa0bfd1dd5422b9662fc1
 }
 
 @media only screen and (max-width: 900px) {
@@ -61,6 +64,7 @@ nav {
   .main-container {
     padding: 50px 20px 50px 20px;
   }
+<<<<<<< HEAD
 
   .button {
     flex-direction: column;
@@ -70,3 +74,6 @@ nav {
 }
 
 
+=======
+}
+>>>>>>> ae7e38d72c56dab2091fa0bfd1dd5422b9662fc1
