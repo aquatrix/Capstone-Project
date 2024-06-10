@@ -24,7 +24,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         "value",
         (snapshot) => {
           const userName = snapshot.val();
-          console.log(userName);
+          // console.log(userName);
 
           profileData.innerHTML = `<p>First Name: ${userName.firstName}</p>
               <p>Last Name: ${userName.lastName}</p>
@@ -45,7 +45,7 @@ firebase.auth().onAuthStateChanged(function (user) {
             profileCard.style.border = "none";
             profileData.style.display = "none";
           });
-          console.log(editButton);
+          // console.log(editButton);
         },
         (error) => {
           console.error("Error reading data:", error);
