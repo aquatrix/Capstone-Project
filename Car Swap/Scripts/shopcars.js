@@ -10,7 +10,7 @@ const logoutBtn = document.getElementById("logout-button");
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
-    // console.log("User is signed in:", user.uid);
+    
     placeholderDiv.style.display = "block";
     setTimeout(function () {
       placeholderDiv.style.display = "none";
@@ -18,7 +18,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     }, 3000);
   } else {
     console.log("No user is signed in.");
-    //window.location.href = "./login.html";
+    
     setTimeout(function () {
       window.location.href = "./login.html";
     }, 3000);
@@ -36,7 +36,7 @@ function displayCarListings() {
   
   carListingsRef.on('value', (snapshot) => {
     if (snapshot.exists()) {
-      carListingsContainer.innerHTML = ''; // Clear any existing content
+      carListingsContainer.innerHTML = ''; 
       
       snapshot.forEach((childSnapshot) => {
         const carData = childSnapshot.val();
@@ -55,38 +55,7 @@ function createCarCard(carData) {
   const card = document.createElement('div');
   card.className = 'customCard';
   card.style.width = '100%';
-  card.style.marginBottom = "20px"// const img = document.createElement('img');
-  // img.className = 'card-img-top';
-  // img.src = carData.image || 'Assets/card-display.jpg'; // Use car image or a default image
-  // img.alt = 'Car image';
-
-  // const cardBody = document.createElement('div');
-  // cardBody.className = 'card-body';
-
-  // const cardTitle = document.createElement('h5');
-  // cardTitle.className = 'card-title';
-  // cardTitle.textContent = carData.make + ' ' + carData.model;
-
-  // const cardText = document.createElement('p');
-  // cardText.className = 'card-text';
-  // cardText.textContent = `
-  //   Color: ${carData.color}
-  //   Year: ${carData.year}
-  //   Price: ${carData.price}
-  //   Mileage: ${carData.milage}
-  // `;
-
-  // const cardLink = document.createElement('a');
-  // cardLink.href = '#';
-  // cardLink.className = 'btn btn-primary';
-  // cardLink.textContent = 'Go somewhere';
-
-  // cardBody.appendChild(cardTitle);
-  // cardBody.appendChild(cardText);
-  // cardBody.appendChild(cardLink);
-
-  // card.appendChild(img);
-  // card.appendChild(cardBody);
+  card.style.marginBottom = "20px"
 
     card.innerHTML =`<div class="imageContainer">
                       <img src= ${carData.image} || "Assets/card-display.jpg" class="card-img-top" alt="Card image" />
@@ -105,7 +74,7 @@ function createCarCard(carData) {
   return card;
 }
 
-// Call the function to display car listings
+
 displayCarListings();
 
 
@@ -138,13 +107,13 @@ logoutButton.addEventListener("click", function () {
 
 
 
-// Logout button code
+
 logoutBtn.addEventListener("click", function (e) {
-  e.preventDefault(); // Prevent the default link action
+  e.preventDefault(); 
 
   firebase.auth().signOut().then(() => {
     console.log("User signed out.");
-    window.location.href = "./login.html"; // Redirect to login page after logout
+    window.location.href = "./login.html";
   }).catch((error) => {
     console.error("Sign out error:", error);
   });

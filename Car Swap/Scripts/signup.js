@@ -26,17 +26,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let lastN = lastName.value;
     let cityN = cityName.value;
 
-    // console.log(selectedValue);
-    // console.log(firstName.value);
-    // console.log(lastName.value);
-    // console.log(emailInput.value);
-    // console.log(passwordInput.value);
-    // console.log(cityName.value);
+    
 
     if (email && pwd) {
       signupButton.textContent = "Signing Up..";
       spinner.style.display = "block";
-      //signupAlert.style.display = "block";
+     
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, pwd)
@@ -56,12 +51,12 @@ document.addEventListener("DOMContentLoaded", function () {
               console.log("User data saved successfully");
               setTimeout(() => {
                 signupAlert.style.display = "block";
-                // Redirect to another page after displaying the alert
+                
                 setTimeout(() => {
                   window.location.href = "login.html";
-                }, 2000); // Redirect after 2 seconds
+                }, 2000); 
               }, 2000);
-              // Redirect to another page or show a success message
+             
             })
             .catch((error) => {
               console.error("Error saving user data: ", error);

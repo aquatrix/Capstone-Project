@@ -6,7 +6,7 @@ let loginSpinner = document.getElementById("login-spinner");
 loginSpinner.style.display = "none";
 
 loginButton.addEventListener("click", function (event) {
-  event.preventDefault(); // Prevent default form submission
+  event.preventDefault();
   loginUser();
 });
 
@@ -19,17 +19,13 @@ function loginUser() {
       .auth()
       .signInWithEmailAndPassword(email, pwd)
       .then((userCredential) => {
-        // Signed in
         loginButton.textContent = "Logging in...";
         loginSpinner.style.display = "block";
         const user = userCredential.user;
-        // console.log("User ID: ", user.uid);
-      
-
-        // Redirect to another page after 2 seconds
+        
         setTimeout(function () {
           window.location.href = "shopcars.html";
-        }, 2000); // 2000 milliseconds = 2 seconds
+        }, 2000);
       })
       .catch((error) => {
         console.error("Error signing in: ", error.message);
@@ -41,10 +37,9 @@ function loginUser() {
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
-    // User is signed in.
-    // console.log("User is signed in:", user.uid);
+   
   } else {
-    // No user is signed in.
+  
     console.log("No user is signed in.");
   }
 });
