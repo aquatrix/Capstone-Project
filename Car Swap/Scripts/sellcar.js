@@ -39,8 +39,9 @@ let currentUserId= ""
 
 onAuthStateChanged(auth, function (user) {
   if (user) {
-    // console.log("User is signed in:", user.uid);
+    console.log("User is signed in:", user.uid);
     currentUserId = user.uid;
+    console.log("User id from the sell car is: ", currentUserId)
   } else {
     console.log("No user is signed in.");
     setTimeout(function () {
@@ -67,7 +68,7 @@ function uploadImage() {
         console.log("Image uploaded successfully!");
         getDownloadURL(snapshot.ref)
           .then((url) => {
-            // console.log(url);
+            console.log(url);
             imageUrl = url;
             displayImage(url);
           })
@@ -129,7 +130,7 @@ function addCarToList(carObject) {
   const newCarRef = push(dbRef(database, "carListing"));
   set(newCarRef, carObject)
     .then(() => {
-      // console.log("Car list data saved to the new node: ", newCarRef);
+      console.log("Car list data saved to the new node: ", newCarRef);
     })
     .catch((error) => {
       console.log("error : ", error);
