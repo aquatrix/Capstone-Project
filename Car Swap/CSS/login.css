@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  nav {
+    background-color: #adf7b6;
+  }
+  
+  .main {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .main-container {
+    background-color: #ebffed;
+    width: 50%;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .btn {
+    width: 200px;
+  }
+  
+  .button {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .error-display {
+    text-align: left;
+    color: red;
+    font-weight: 500;
+    font-size: 20px;
+    display: none;
+  }
+  
+  .email-validation {
+    text-align: left;
+    color: red;
+    font-weight: 500;
+    font-size: 20px;
+    display: none;
+  }
+  
+  .password-validation {
+    text-align: left;
+    color: red;
+    font-weight: 500;
+    font-size: 20px;
+    display: none;
+  }
+  
+  @media only screen and (max-width: 900px) {
+    .main-container {
+      width: 95%;
+      margin: auto;
+      padding: 20px;
+    }
+  
+    .form-control {
+      width: 100%;
+    }
+  
+    .btn {
+      width: 100%;
+    }
+  
+    .main-container {
+      padding: 50px 20px 50px 20px;
+    }
+  
+    .button {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+  
+    .error-display {
+      text-align: center;
+    }
+  
+    .email-validation {
+      text-align: center;
+    }
+  
+    .password-validation {
+      text-align: center;
+    }
+  }
+  

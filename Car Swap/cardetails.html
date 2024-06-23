@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image Upload to Firebase</title>
-    <link rel="stylesheet" href="CSS/sellcar.css" />
+    <title>View Details</title>
+    <link rel="stylesheet" href="CSS/cardetails.css" />
     <link rel="manifest" href="/manifest.json" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -12,6 +12,10 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <script
+      src="https://kit.fontawesome.com/68cd47e680.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg p-4">
@@ -31,12 +35,15 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto column-gap-3">
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="shopcars.html"
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="shopcars.html"
                 >Shop Cars</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="sellcar.html"
+              <a class="nav-link" aria-current="page" href="sellcar.html"
                 >Sell Car</a
               >
             </li>
@@ -56,57 +63,47 @@
       </div>
     </nav>
 
-    <div class="container">
-      <form id="car-listing-form">
-        <div>
-          <label for="make">Make:</label>
-          <input type="text" id="make" name="make" required />
+    <div class="main">
+      <div class="main-container">
+        <div class="car-header">
+          <div class="header-and-list">
+            <h1 id="car-header" class="header"></h1>
+            <p class="owner" id="list-owner"></p>
+          </div>
+          <i id="heart" class="heart fa-regular fa-heart"></i>
         </div>
-        <div>
-          <label for="color">Color:</label>
-          <input type="text" id="color" name="color" required />
+        <div class="img">
+          <div class="img-container">
+            <img id="display-image" src="" alt="" />
+          </div>
         </div>
-        <div>
-          <label for="model">Model:</label>
-          <input type="text" id="model" name="model" required />
+        <div class="car-info">
+          <div class="car-info-container">
+            <div class="price">
+              <p id="price"></p>
+            </div>
+            <div class="year">
+              <p id="year">
+                <i class="fa-solid fa-calendar-days"></i>
+              </p>
+            </div>
+            <div class="mileage">
+              <p id="mileage"><i class="fa-solid fa-road"></i> 130000</p>
+            </div>
+            <div class="color">
+              <p id="color"><i class="fa-solid fa-paint-roller"></i> Brown</p>
+            </div>
+          </div>
+          <div class="car-description">
+            <p id="car-description"></p>
+          </div>
         </div>
-        <div>
-          <label for="year">Year:</label>
-          <input
-            type="number"
-            id="year"
-            name="year"
-            min="1900"
-            max="2099"
-            required
-          />
-        </div>
-        <div>
-          <label for="price">Price:</label>
-          <input type="number" id="price" name="price" min="0" required />
-        </div>
-        <div>
-          <label for="mileage">Mileage:</label>
-          <input type="number" id="mileage" name="mileage" min="0" required />
-        </div>
-
-        <h1>Upload Image</h1>
-        <input type="file" id="imageUpload" accept="image/*" />
-        <button id="uploadButton" class="button">Upload Image</button>
-        <h2>Uploaded Image:</h2>
-        <div class="centerclass">
-          <div id="imageContainer"></div>
-        </div>
-
-        <div class="submitDiv">
-          <button class="button" id="submit" type="submit">Submit</button>
-        </div>
-      </form>
+      </div>
     </div>
 
     <script type="module" src="Scripts/firebaseConfig.js"></script>
 
-    <script type="module" src="Scripts/sellcar.js"></script>
+    <script type="module" src="Scripts/cardetails.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
