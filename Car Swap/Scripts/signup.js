@@ -26,16 +26,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let lastN = lastName.value;
     let cityN = cityName.value;
 
-<<<<<<< HEAD
     console.log(selectedValue);
     console.log(firstName.value);
     console.log(lastName.value);
     console.log(emailInput.value);
     console.log(passwordInput.value);
     console.log(cityName.value);
-=======
-    
->>>>>>> a3a63642142f156d633fc2e9fa57b7a2d6555cb0
 
     if (email && pwd) {
       signupButton.textContent = "Signing Up..";

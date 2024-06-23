@@ -39,11 +39,7 @@ let currentUserId= ""
 
 onAuthStateChanged(auth, function (user) {
   if (user) {
-<<<<<<< HEAD
     console.log("User is signed in:", user.uid);
-=======
-   
->>>>>>> a3a63642142f156d633fc2e9fa57b7a2d6555cb0
     currentUserId = user.uid;
     console.log("User id from the sell car is: ", currentUserId)
   } else {
@@ -72,11 +68,7 @@ function uploadImage() {
         console.log("Image uploaded successfully!");
         getDownloadURL(snapshot.ref)
           .then((url) => {
-<<<<<<< HEAD
             console.log(url);
-=======
-           
->>>>>>> a3a63642142f156d633fc2e9fa57b7a2d6555cb0
             imageUrl = url;
             displayImage(url);
           })
@@ -138,11 +130,7 @@ function addCarToList(carObject) {
   const newCarRef = push(dbRef(database, "carListing"));
   set(newCarRef, carObject)
     .then(() => {
-<<<<<<< HEAD
       console.log("Car list data saved to the new node: ", newCarRef);
-=======
-      
->>>>>>> a3a63642142f156d633fc2e9fa57b7a2d6555cb0
     })
     .catch((error) => {
       console.log("error : ", error);
