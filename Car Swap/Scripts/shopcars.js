@@ -10,7 +10,7 @@ const logoutBtn = document.getElementById("logout-button");
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
-    
+    console.log("User is signed in:", user.uid);
     placeholderDiv.style.display = "block";
     setTimeout(function () {
       placeholderDiv.style.display = "none";

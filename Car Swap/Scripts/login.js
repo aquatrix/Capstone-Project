@@ -22,7 +22,9 @@ function loginUser() {
         loginButton.textContent = "Logging in...";
         loginSpinner.style.display = "block";
         const user = userCredential.user;
-        
+        console.log("User ID: ", user.uid);
+
+        // Redirect to another page after 2 seconds
         setTimeout(function () {
           window.location.href = "shopcars.html";
         }, 2000);
@@ -37,7 +39,8 @@ function loginUser() {
 
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
-   
+    // User is signed in.
+    console.log("User is signed in:", user.uid);
   } else {
   
     console.log("No user is signed in.");

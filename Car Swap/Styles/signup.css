@@ -29,11 +29,7 @@
 }
 
 .side1 {
-<<<<<<< HEAD
   width: 30%;
-=======
-  width: 50%;
->>>>>>> ae7e38d72c56dab2091fa0bfd1dd5422b9662fc1
 }
 
 .side1-container {
@@ -41,11 +37,7 @@
 }
 
 .side2 {
-<<<<<<< HEAD
   width: 70%;
-=======
-  width: 50%;
->>>>>>> ae7e38d72c56dab2091fa0bfd1dd5422b9662fc1
 }
 
 .side2-container {
@@ -54,18 +46,13 @@
 
 .btn {
   margin-top: 10px;
-<<<<<<< HEAD
   width: 150px;
-=======
-  width: 100px;
->>>>>>> ae7e38d72c56dab2091fa0bfd1dd5422b9662fc1
 }
 
 .page-header {
   color: rgb(100, 100, 100);
 }
 
-<<<<<<< HEAD
 .alert-container {
   margin-top: 25px;
 }
@@ -76,8 +63,6 @@
   gap: 20px;
 }
 
-=======
->>>>>>> ae7e38d72c56dab2091fa0bfd1dd5422b9662fc1
 @media only screen and (max-width: 900px) {
   .main {
     margin-top: 50px;

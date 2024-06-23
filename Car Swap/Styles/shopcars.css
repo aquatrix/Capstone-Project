@@ -9,7 +9,6 @@
 }
 
 .main {
-<<<<<<< HEAD
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
@@ -78,11 +77,3 @@
     flex-grow: 1; 
   }
 }
-=======
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
->>>>>>> ae7e38d72c56dab2091fa0bfd1dd5422b9662fc1
