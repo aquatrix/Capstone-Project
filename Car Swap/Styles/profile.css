@@ -12,7 +12,7 @@ nav {
 .profile-card {
   width: 70%;
   height: 500px;
-  border: 1px solid rgb(200, 200, 200);
+  /* border: 1px solid rgb(200, 200, 200); */
   border-radius: 10px;
 }
 

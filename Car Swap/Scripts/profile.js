@@ -24,8 +24,12 @@ firebase.auth().onAuthStateChanged(function (user) {
         "value",
         (snapshot) => {
           const userName = snapshot.val();
+<<<<<<< HEAD
           console.log(userName);
 
+=======
+         
+>>>>>>> a3a63642142f156d633fc2e9fa57b7a2d6555cb0
           profileData.innerHTML = `<p>First Name: ${userName.firstName}</p>
               <p>Last Name: ${userName.lastName}</p>
               <p>Email: ${userName.email}</p>
@@ -45,7 +49,11 @@ firebase.auth().onAuthStateChanged(function (user) {
             profileCard.style.border = "none";
             profileData.style.display = "none";
           });
+<<<<<<< HEAD
           console.log(editButton);
+=======
+          
+>>>>>>> a3a63642142f156d633fc2e9fa57b7a2d6555cb0
         },
         (error) => {
           console.error("Error reading data:", error);
@@ -65,9 +73,7 @@ profileData.style.display = "block";
 
 form.addEventListener("submit", function (event) {
   event.preventDefault();
-  //console.log(firstName.value);
-
-  // Here you can add the code to save the data to Firebase
+  
 });
 
 saveButton.addEventListener("click", saveUserData);
@@ -95,7 +101,7 @@ function saveUserData() {
         profileData.style.display = "block";
         avatar.style.display = "block";
 
-        // Optionally, show a success message or perform other actions
+        
       })
       .catch((error) => {
         console.error("Error updating user data:", error);
@@ -106,14 +112,14 @@ function saveUserData() {
 }
 
 
-// Logout button code
+
 
 logoutBtn.addEventListener("click", function (e) {
-  e.preventDefault(); // Prevent the default link action
+  e.preventDefault(); 
 
   firebase.auth().signOut().then(() => {
     console.log("User signed out.");
-    window.location.href = "./login.html"; // Redirect to login page after logout
+    window.location.href = "./login.html"; 
   }).catch((error) => {
     console.error("Sign out error:", error);
   });
