@@ -1,126 +1,100 @@
+import {
+  dbRef,
+  onAuthStateChanged,
+  auth,
+  database,
+  get,
+  child,
+} from "./firebaseConfig.js";
+
 let placeholderDiv = document.getElementById("placeholder");
 let mainDiv = document.getElementById("main");
 let loginAlert = document.getElementById("heading-alert");
+let profileName = document.getElementById("profile-name");
+let cardContainer = document.getElementById("card-container");
 
-
-const carListingsContainer = document.getElementById('car-listings-container');
-
-const logoutBtn = document.getElementById("logout-button");
-
-
-firebase.auth().onAuthStateChanged(function (user) {
+onAuthStateChanged(auth, function (user) {
   if (user) {
-    console.log("User is signed in:", user.uid);
-    placeholderDiv.style.display = "block";
-    setTimeout(function () {
-      placeholderDiv.style.display = "none";
-      main.style.display = "block";
-    }, 3000);
+    const ref = dbRef(database);
+
+    get(child(ref, `users/${user.uid}`))
+      .then((snapshot) => {
+        const user = snapshot.val();
+        profileName.textContent = `${user.firstName}'s Profile`;
+
+        placeholderDiv.style.display = "block";
+        setTimeout(function () {
+          placeholderDiv.style.display = "none";
+          mainDiv.style.display = "block";
+        }, 3000);
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+
+    get(child(ref, "carListing"))
+      .then((snapshot) => {
+        const carListings = snapshot.val();
+
+        for (let id in carListings) {
+          cardContainer.innerHTML += `<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card" style="width: 100%">
+              <img src="${carListings[id].image}" class="card-img-top" alt="Card image"/>
+              <div class="card-body">
+                <h5 class="card-title">${carListings[id].make} ${carListings[id].model}</h5>
+                <p class="card-text">
+                  ${carListings[id].color} ${carListings[id].year} ${carListings[id].make} ${carListings[id].model} with ${carListings[id].milage} kilometres, priced at $${carListings[id].price}.
+                </p>
+                <a href="#" id="${id}" class="btn btn-primary view-details">View Details</a>
+              </div>
+            </div>
+          </div>`;
+        }
+
+        var buttons = document.querySelectorAll(".view-details");
+        buttons.forEach(function (button) {
+          button.addEventListener("click", function (event) {
+            event.preventDefault();
+            const carId = button.id;
+            console.log("Button clicked for car ID:", carId);
+            localStorage.setItem("selectedCarId", carId);
+            window.location.href = "./cardetails.html";
+          });
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching car listings:", error);
+      });
   } else {
     console.log("No user is signed in.");
-    
     setTimeout(function () {
       window.location.href = "./login.html";
     }, 3000);
+
     setTimeout(function () {
-      console.log("Login required");
       loginAlert.textContent = "Login Required!";
       loginAlert.style.color = "red";
     }, 1000);
   }
 });
 
-
-function displayCarListings() {
-  const carListingsRef = firebase.database().ref('carListing');
-  
-  carListingsRef.on('value', (snapshot) => {
-    if (snapshot.exists()) {
-      carListingsContainer.innerHTML = ''; 
-      
-      snapshot.forEach((childSnapshot) => {
-        const carData = childSnapshot.val();
-        const carCard = createCarCard(carData);
-        carListingsContainer.appendChild(carCard);
-      });
-    } else {
-      console.log('No car listings found');
-    }
-  });
-}
-
-
-
-function createCarCard(carData) {
-  const card = document.createElement('div');
-  card.className = 'customCard';
-  card.style.width = '100%';
-  card.style.marginBottom = "20px"
-
-    card.innerHTML =`<div class="imageContainer">
-                      <img src= ${carData.image} || "Assets/card-display.jpg" class="card-img-top" alt="Card image" />
-                    </div>
-
-                    <div class="card-body">
-                      <h5 class="card-title" style="margin-bottom: 2%;">${carData.make}   <span style="font-weight: 400;">${carData.model} </span></h5>
-                      
-                      <p class="card-text">
-                        This car has ${carData.color} color, ${carData.milage} milage and made in ${carData.year} <br />
-                        Price: ${carData.price}
-                      </p>
-                      <a href="#" class="btn btn-primary">More Information</a>
-                    </div>`;
-            
-  return card;
-}
-
-
-displayCarListings();
-
-
-
-
-
-
 let logoutButton = document.getElementById("logout-button");
 
 logoutButton.addEventListener("click", function () {
   logoutButton.disabled = true;
-  logoutButton.textContent = "Signing Out...";
+  logoutButton.textContent = "Logging Out...";
 
   setTimeout(function () {
-    firebase
-      .auth()
+    auth
       .signOut()
       .then(function () {
         console.log("User signed out.");
-
         setTimeout(function () {
           window.location.href = "./login.html";
-        }, 3000);
+        }, 800);
       })
       .catch(function (error) {
         console.error("Sign out error:", error);
       });
-  }, 3000);
-});
-
-
-
-
-logoutBtn.addEventListener("click", function (e) {
-  e.preventDefault(); 
-
-  firebase.auth().signOut().then(() => {
-    console.log("User signed out.");
-    window.location.href = "./login.html";
-  }).catch((error) => {
-    console.error("Sign out error:", error);
-  });
-});
-
-window.addEventListener('popstate', function (event) {
-  if (!firebase.auth().currentUser) {
-    window.location.href = "./login.html";
-  }
+  }, 800);
 });
