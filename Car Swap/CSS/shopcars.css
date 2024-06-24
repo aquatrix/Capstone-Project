@@ -14,6 +14,7 @@
   flex-wrap: wrap;
   gap: 20px;
   display: none;
+  margin-top: 40px;
 }
 
 .card {
@@ -22,6 +23,7 @@
 
 .placeholder-card {
   display: block;
+  margin-top: 80px;
 }
 
 .page-header {
@@ -33,4 +35,23 @@
   width: 200px;
   height: 200px;
   object-fit: cover;
+}
+
+.search-input{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  gap: 20px;
+}
+
+.search-input input{
+  padding: 10px;
+  width: 30%;
+}
+
+.search-input button{
+  padding: 12px 30px 12px 30px;
+  background-color: #adf7b6;
+  border: none;
 }

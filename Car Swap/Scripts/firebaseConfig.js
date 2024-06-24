@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-import { getDatabase, ref as dbRef, set, push, get, child, update} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref as dbRef, set, push, get, child, update, query, orderByChild, equalTo, onValue, ref} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword , signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
@@ -20,4 +20,4 @@ const auth = getAuth(app);
 
 
 
-export { app, auth, database, storage, signInWithEmailAndPassword, createUserWithEmailAndPassword , dbRef, set, push, get, child, storageRef, uploadBytes, getDownloadURL, onAuthStateChanged, signOut, update };
+export { app, auth, database, storage, signInWithEmailAndPassword, createUserWithEmailAndPassword , dbRef, set, push, get, child, storageRef, uploadBytes, getDownloadURL, onAuthStateChanged, signOut, update, equalTo, onValue, orderByChild, query, ref };
