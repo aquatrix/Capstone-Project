@@ -78,7 +78,7 @@ onAuthStateChanged(auth, function (user) {
         console.error("Error fetching car listings:", error);
       });
   } else {
-    console.log("No user is signed in.");
+    
     setTimeout(function () {
       window.location.href = "./login.html";
     }, 3000);
@@ -101,7 +101,7 @@ logoutButton.addEventListener("click", function () {
     auth
       .signOut()
       .then(function () {
-        console.log("User signed out.");
+        
         setTimeout(function () {
           window.location.href = "./login.html";
         }, 800);

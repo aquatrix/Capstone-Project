@@ -44,23 +44,20 @@ let profileName = document.getElementById("profile-name");
 let submitBtn = document.getElementById("submit");
 
 let imageUrl = "";
+let userData
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    console.log("User is signed in:", user.uid);
+    
 
     get(child(dbRef(database), `users/${user.uid}`))
       .then((snapshot) => {
         if (snapshot.exists()) {
           const user = snapshot.val();
-          console.log(user.firstName);
+          userData = user
+          
           profileName.textContent = `${user.firstName}'s Profile`;
 
-          placeholderDiv.style.display = "block";
-          setTimeout(() => {
-            placeholderDiv.style.display = "none";
-            mainDiv.style.display = "block";
-          }, 3000);
         } else {
           console.log("No data available");
         }
@@ -97,10 +94,10 @@ function uploadImage() {
 
     uploadBytes(storageReference, file)
       .then((snapshot) => {
-        console.log("Image uploaded successfully!");
+        
         getDownloadURL(snapshot.ref)
           .then((url) => {
-            console.log(url);
+            
             imageUrl = url;
             displayImage(url);
           })
@@ -147,11 +144,12 @@ carListingForm.addEventListener("submit", (e) => {
     model: dmodel,
     price: dprice,
     year: dyear,
+    owner: userData.firstName + " "+ userData.lastName
   };
 
   addCarToList(carObject);
 
-  console.log("Test");
+  // console.log("Test");
 });
 
 submitBtn.addEventListener("click", function () {
