@@ -67,9 +67,16 @@ nav {
   display: none;
 }
 
+.signup-text {
+  text-align: left;
+  margin-top: 20px;
+}
+
 .new-user {
   text-align: left;
   margin-top: 20px;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 @media only screen and (max-width: 900px) {

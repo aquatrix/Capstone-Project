@@ -1,7 +1,33 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-import { getDatabase, ref as dbRef, set, push, get, child, update, query, orderByChild, equalTo, onValue, ref, remove} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword , signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {
+  getStorage,
+  ref as storageRef,
+  uploadBytes,
+  getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+import {
+  getDatabase,
+  ref as dbRef,
+  set,
+  push,
+  get,
+  child,
+  update,
+  query,
+  orderByChild,
+  equalTo,
+  onValue,
+  ref,
+  remove,
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  sendPasswordResetEmail,
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBUXbpad1YMDEJ5gNUg9jCzDXuiY4mFeZ0",
@@ -18,6 +44,29 @@ const storage = getStorage(app);
 const database = getDatabase(app);
 const auth = getAuth(app);
 
-
-
-export { app, auth, database, storage, signInWithEmailAndPassword, createUserWithEmailAndPassword , dbRef, set, push, get, child, storageRef, uploadBytes, getDownloadURL, onAuthStateChanged, signOut, update, equalTo, onValue, orderByChild, query, ref, remove };
+export {
+  app,
+  auth,
+  database,
+  storage,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  dbRef,
+  set,
+  push,
+  get,
+  child,
+  storageRef,
+  uploadBytes,
+  getDownloadURL,
+  onAuthStateChanged,
+  signOut,
+  update,
+  equalTo,
+  onValue,
+  orderByChild,
+  query,
+  ref,
+  remove,
+  sendPasswordResetEmail,
+};

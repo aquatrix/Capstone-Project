@@ -1,4 +1,8 @@
-import { auth, signInWithEmailAndPassword } from "./firebaseConfig.js";
+import {
+  auth,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "./firebaseConfig.js";
 
 let emailInput = document.getElementById("emailInput");
 let passwordInput = document.getElementById("passwordInput");
@@ -7,6 +11,7 @@ let loginSpinner = document.getElementById("login-spinner");
 let errorDisplay = document.getElementById("error-display");
 let emailValidation = document.getElementById("email-validation");
 let passwordValidation = document.getElementById("password-validation");
+let forgotPassword = document.getElementById("forgot");
 
 loginSpinner.style.display = "none";
 
@@ -32,7 +37,7 @@ function loginUser() {
     emailValidation.style.display = "none";
     passwordValidation.style.display = "none";
 
-    signInWithEmailAndPassword(auth,email, pwd)
+    signInWithEmailAndPassword(auth, email, pwd)
       .then((userCredential) => {
         loginButton.textContent = "Logging in...";
         loginSpinner.style.display = "block";
@@ -50,4 +55,20 @@ function loginUser() {
   } else {
     console.error("Email and password must be provided");
   }
+}
+
+forgotPassword.addEventListener("click", function () {
+  PasswordRest();
+});
+
+function PasswordRest() {
+  sendPasswordResetEmail(auth, emailInput.value)
+    .then(() => {
+      console.log("Password Email Sent");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
 }
