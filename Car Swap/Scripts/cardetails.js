@@ -25,14 +25,12 @@ let carDetails;
 
 document.addEventListener("DOMContentLoaded", function () {
   carId = localStorage.getItem("selectedCarId");
-  console.log("Car ID retrieved from storage:", carId);
   const ref = dbRef(database);
 
   get(child(ref, `carListing/${carId}`))
     .then((snapshot) => {
       if (snapshot.exists()) {
         carDetails = snapshot.val();
-        console.log(carDetails.image);
         displayImage.src = carDetails.image;
         carHeader.innerHTML = `${carDetails.make} ${carDetails.model}`;
         carPrice.innerHTML = `<i class="fa-solid fa-dollar-sign"></i> ${carDetails.price}`;
@@ -70,33 +68,12 @@ onAuthStateChanged(auth, function (user) {
   }
 });
 
-// onAuthStateChanged(auth, function (user) {
-//   if (user) {
-//     const ref = dbRef(database);
-
-//     get(child(ref, `users/${user.uid}/myListings/${carId}`))
-//       .then((snapshot) => {
-//         const userData = snapshot.val();
-//         console.log(userData.owner);
-//         carOwner.innerHTML = `Listed by ${userData.owner}`;
-//       })
-//       .catch((error) => {
-//         console.error("Error fetching user data:", error);
-//       });
-//   } else {
-//     console.log("No user is signed in.");
-//     setTimeout(function () {
-//       window.location.href = "./login.html";
-//     }, 3000);
-//   }
-// });
-
 const ref = dbRef(database);
 
 heart.addEventListener("click", function () {
-  console.log(heart.className);
+
   if (heart.className == "heart fa-regular fa-heart") {
-    console.log(carId);
+
 
     heart.className = "heart fa-solid fa-heart";
 
@@ -120,15 +97,15 @@ heart.addEventListener("click", function () {
 
         set(wishlistRef, carObject)
           .then(() => {
-            console.log("Car added to wishlist");
+            // console.log("Car added to wishlist");
           })
           .catch((error) => {
-            console.error("Error adding car to wishlist:", error);
+            // console.error("Error adding car to wishlist:", error);
           });
       }
     });
   } else if (heart.className == "heart fa-solid fa-heart") {
-    console.log(carId);
+    
 
     heart.className = "heart fa-regular fa-heart";
 
@@ -142,7 +119,7 @@ heart.addEventListener("click", function () {
 
         remove(wishlistRef)
           .then(() => {
-            console.log("Car removed from wishlist");
+            
           })
           .catch((error) => {
             console.error("Error removing car from wishlist:", error);

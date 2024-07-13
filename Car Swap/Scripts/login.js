@@ -42,7 +42,7 @@ function loginUser() {
         loginButton.textContent = "Logging in...";
         loginSpinner.style.display = "block";
         const user = userCredential.user;
-        console.log("User ID: ", user.uid);
+        // console.log("User ID: ", user.uid);
 
         setTimeout(function () {
           window.location.href = "shopcars.html";
@@ -64,7 +64,7 @@ forgotPassword.addEventListener("click", function () {
 function PasswordRest() {
   sendPasswordResetEmail(auth, emailInput.value)
     .then(() => {
-      console.log("Password Email Sent");
+      
     })
     .catch((error) => {
       const errorCode = error.code;
