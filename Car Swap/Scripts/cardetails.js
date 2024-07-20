@@ -39,6 +39,24 @@ document.addEventListener("DOMContentLoaded", function () {
         carYear.innerHTML = `<i class="fa-solid fa-calendar-days"></i> ${carDetails.year}`;
         carDescription.innerHTML = `Introducing a pristine ${carDetails.color} ${carDetails.year} ${carDetails.make} ${carDetails.model}, a stylish and reliable compact car perfect for both city driving and longer journeys. Priced at an affordable $${carDetails.price}, this vehicle offers excellent value for its class. With ${carDetails.milage} kilometres on the odometer, it demonstrates durability and consistent performance over the years. The ${carDetails.make} ${carDetails.model} is renowned for its sporty design, fuel efficiency, and smooth handling. Its sleek white exterior is complemented by a well-maintained interior, featuring modern amenities and comfortable seating. Whether you're commuting daily or planning road trips, this ${carDetails.make} ${carDetails.model} promises a dependable and enjoyable driving experience. Don't miss the chance to own this versatile and economical vehicle that combines quality, affordability, and style.`;
         carOwner.innerHTML = `Listed by ${carDetails.owner}`;
+
+        onAuthStateChanged(auth, function (user) {
+          if (user) {
+            const wishlistRef = dbRef(
+              database,
+              `users/${user.uid}/wishlist/${carId}`
+            );
+            get(wishlistRef)
+              .then((snapshot) => {
+                if (snapshot.exists()) {
+                  heart.className = "heart fa-solid fa-heart";
+                }
+              })
+              .catch((error) => {
+                console.error("Error checking wishlist:", error);
+              });
+          }
+        });
       } else {
         console.log("No data available for this car ID.");
       }
@@ -71,20 +89,21 @@ onAuthStateChanged(auth, function (user) {
 const ref = dbRef(database);
 
 heart.addEventListener("click", function () {
-
   if (heart.className == "heart fa-regular fa-heart") {
-
-
     heart.className = "heart fa-solid fa-heart";
+    updateWishlist(true);
+  } else if (heart.className == "heart fa-solid fa-heart") {
+    heart.className = "heart fa-regular fa-heart";
+    updateWishlist(false);
+  }
+});
 
-    onAuthStateChanged(auth, function (user) {
-      if (user) {
-        const userId = user.uid;
-        const wishlistRef = dbRef(
-          database,
-          `users/${userId}/wishlist/${carId}`
-        );
-
+function updateWishlist(addToWishlist) {
+  onAuthStateChanged(auth, function (user) {
+    if (user) {
+      const userId = user.uid;
+      const wishlistRef = dbRef(database, `users/${userId}/wishlist/${carId}`);
+      if (addToWishlist) {
         let carObject = {
           model: carDetails.model,
           make: carDetails.make,
@@ -94,37 +113,22 @@ heart.addEventListener("click", function () {
           image: carDetails.image,
           color: carDetails.color,
         };
-
         set(wishlistRef, carObject)
           .then(() => {
-            // console.log("Car added to wishlist");
+            console.log("Car added to wishlist");
           })
           .catch((error) => {
-            // console.error("Error adding car to wishlist:", error);
+            console.error("Error adding car to wishlist:", error);
           });
-      }
-    });
-  } else if (heart.className == "heart fa-solid fa-heart") {
-    
-
-    heart.className = "heart fa-regular fa-heart";
-
-    onAuthStateChanged(auth, function (user) {
-      if (user) {
-        const userId = user.uid;
-        const wishlistRef = dbRef(
-          database,
-          `users/${userId}/wishlist/${carId}`
-        );
-
+      } else {
         remove(wishlistRef)
           .then(() => {
-            
+            console.log("Car removed from wishlist");
           })
           .catch((error) => {
             console.error("Error removing car from wishlist:", error);
           });
       }
-    });
-  }
-});
+    }
+  });
+}

@@ -427,5 +427,3 @@ function filterAndDisplayCars() {
 checkboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", filterAndDisplayCars);
 });
-
-filterAndDisplayCars();
