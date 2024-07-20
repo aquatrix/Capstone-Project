@@ -19,6 +19,8 @@ import {
   onValue,
   ref,
   remove,
+  startAt,
+  endAt,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 import {
   getAuth,
@@ -69,4 +71,6 @@ export {
   ref,
   remove,
   sendPasswordResetEmail,
+  startAt,
+  endAt,
 };

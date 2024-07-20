@@ -60,8 +60,19 @@
       <h1 id="heading-alert">Shop Cars</h1>
     </div>
     <div class="search-input">
-      <input id="car-search" placeholder="Search Cars by Make" type="text" />
-      <button id="search-button">Search</button>
+      <div class="search-bar">
+        <input id="car-search" placeholder="Search Cars by Make" type="text" />
+        <button id="search-button">Search</button>
+      </div>
+      <div class="sort">
+        <select id="sortPrices" class="sort-prices">
+          <option value="default">Sort By</option>
+          <option value="lowToHigh">Price: Low to High</option>
+          <option value="highToLow">Price: High to Low</option>
+          <option value="newestFirst">Year: Newest First</option>
+          <option value="oldestFirst">Year: Oldest First</option>
+        </select>
+      </div>
     </div>
     <div id="placeholder" class="placeholder-card">
       <div class="container mt-4">
