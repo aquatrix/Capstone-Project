@@ -22,6 +22,7 @@ let cardContainer = document.getElementById("card-container");
 let carSearch = document.getElementById("car-search");
 let searchButton = document.getElementById("search-button");
 let select = document.getElementById("sortPrices");
+let checkboxes = document.querySelectorAll('input[name="makeFilter"]');
 
 onAuthStateChanged(auth, function (user) {
   if (user) {
@@ -362,3 +363,69 @@ function oldestFirst() {
     }
   });
 }
+
+function displayCars(cars) {
+  cardContainer.innerHTML = "";
+  cars.forEach((car) => {
+    cardContainer.innerHTML += `<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+      <div class="card" style="width: 100%">
+        <img src="${car.image}" class="card-img-top" alt="Card image"/>
+        <div class="card-body">
+          <h5 class="card-title">${car.make} ${car.model}</h5>
+          <p class="card-text">
+            ${car.color} ${car.year} ${car.make} ${car.model} with ${car.milage} kilometres, priced at $${car.price}.
+          </p>
+          <a href="#" id="${car.id}" class="btn btn-primary view-details">View Details</a>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  var buttons = document.querySelectorAll(".view-details");
+  buttons.forEach(function (button) {
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+      const carId = button.id;
+      console.log("Button clicked for car ID:", carId);
+      localStorage.setItem("selectedCarId", carId);
+      window.location.href = "./cardetails.html";
+    });
+  });
+}
+
+function filterAndDisplayCars() {
+  const selectedMakes = Array.from(checkboxes)
+    .filter((box) => box.checked)
+    .map((box) => box.value);
+
+  if (selectedMakes.length === 0) {
+    get(child(ref(database), "carListing")).then((snapshot) => {
+      if (snapshot.exists()) {
+        const cars = Object.entries(snapshot.val()).map(([key, value]) => ({
+          id: key,
+          ...value,
+        }));
+        displayCars(cars);
+      }
+    });
+  } else {
+    const carListingRef = ref(database, "carListing");
+    const carQuery = query(carListingRef, orderByChild("make"));
+
+    onValue(carQuery, (snapshot) => {
+      if (snapshot.exists()) {
+        const cars = Object.entries(snapshot.val())
+          .map(([key, value]) => ({ id: key, ...value }))
+          .filter((car) => selectedMakes.includes(car.make.toLowerCase()));
+
+        displayCars(cars);
+      }
+    });
+  }
+}
+
+checkboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", filterAndDisplayCars);
+});
+
+filterAndDisplayCars();
