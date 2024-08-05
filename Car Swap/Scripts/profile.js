@@ -49,6 +49,8 @@ let navbar = document.getElementById("navbar");
 let navbarNav = document.getElementById("navbarNav");
 let navbarBrand = document.getElementById("navbar-brand");
 let menuLink = document.getElementById("menu-link");
+let badgeTitle = document.getElementById("badge-title");
+let badgeContainer = document.getElementById("badgeContainer");
 
 onAuthStateChanged(auth, function (user) {
   if (user) {
@@ -318,5 +320,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!body.classList.contains("dark-mode")) {
     body.classList.add("light-mode");
+  }
+});
+
+onAuthStateChanged(auth, function (user) {
+  if (user) {
+    console.log("User ID:", user.uid);
+
+    const checkForChildNode = (nodePath) => {
+      const nodeRef = dbRef(database, nodePath);
+
+      get(nodeRef)
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            let numChildren = 0;
+            snapshot.forEach(() => {
+              numChildren++;
+            });
+
+            if (numChildren === 1) {
+              console.log("1 record found");
+              badgeTitle.textContent = "Rookie Seller";
+              badgeContainer.style.display = "block";
+            } else if (numChildren > 4) {
+              console.log("More than 4 records found");
+              badgeTitle.textContent = "Top Seller";
+              badgeContainer.style.backgroundColor = "red";
+              badgeContainer.style.display = "block";
+            }
+          } else {
+            console.log("No records found");
+          }
+        })
+        .catch((error) => {
+          console.error("Error getting data:", error);
+        });
+    };
+
+    checkForChildNode(`users/${user.uid}/myListings`);
+  } else {
+    console.log("No user is signed in.");
   }
 });
