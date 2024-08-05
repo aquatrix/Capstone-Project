@@ -45,15 +45,19 @@ let wishlistContainer = document.getElementById("wishlist-container");
 
 let uid = "";
 
+let navbar = document.getElementById("navbar");
+let navbarNav = document.getElementById("navbarNav");
+let navbarBrand = document.getElementById("navbar-brand");
+let menuLink = document.getElementById("menu-link");
+
 onAuthStateChanged(auth, function (user) {
   if (user) {
-    
     uid = user.uid;
     const ref = dbRef(database);
     get(child(ref, `users/${user.uid}`))
       .then((snapshot) => {
         const user = snapshot.val();
-        
+
         profileName.textContent = `${user.firstName}'s Profile`;
         profileUserName.innerHTML = `${user.firstName} ${user.lastName}`;
         emailAddress.innerHTML = user.email;
@@ -119,7 +123,6 @@ saveBtn.addEventListener("click", function () {
   console.log(firstName.value);
   console.log("click");
 
-  // Update the user data in Firebase
   const updatedUserData = {
     firstName: firstName.value,
     lastName: lastName.value,
@@ -151,9 +154,7 @@ cancelBtn.addEventListener("click", function () {
   saveBtn.style.display = "none";
 });
 
-// Uploading Profile Picture in Database and in the User node is completed
 uploadBtn.addEventListener("click", () => {
-  
   let picture = document.createElement("input");
   picture.type = "file";
 
@@ -168,18 +169,14 @@ uploadBtn.addEventListener("click", () => {
 
       uploadBytes(storageReference, selectedFile)
         .then((snapshot) => {
-          
           getDownloadURL(snapshot.ref)
             .then((url) => {
-              
               newImage.src = url;
 
               var userRef = dbRef(database, `users/${uid}/profileImage`);
 
               set(userRef, url)
-                .then(() => {
-                  
-                })
+                .then(() => {})
                 .catch((error) => {
                   console.error("Error updating profile image URL:", error);
                 });
@@ -255,7 +252,7 @@ onAuthStateChanged(auth, function (user) {
         if (carListings) {
           Object.keys(carListings).forEach((listingKey) => {
             const listing = carListings[listingKey];
-            
+
             wishlistContainer.innerHTML += `<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
             <div class="card" style="width: 100%">
               <img src="${listing.image}" class="card-img-top" alt="Card image"/>
@@ -281,7 +278,6 @@ onAuthStateChanged(auth, function (user) {
             });
           });
         } else {
-          // console.log("No listings found.");
         }
       })
       .catch((error) => {
@@ -289,5 +285,38 @@ onAuthStateChanged(auth, function (user) {
       });
   } else {
     console.log("No user is signed in.");
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const switchButton = document.getElementById("flexSwitchCheckDefault");
+  const body = document.body;
+
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    body.classList.add(savedTheme);
+    if (savedTheme === "dark-mode") {
+      switchButton.checked = true;
+    }
+  }
+
+  switchButton.addEventListener("change", () => {
+    if (switchButton.checked) {
+      body.classList.replace("light-mode", "dark-mode");
+      navbar.classList.add("navbar-darkmode");
+      localStorage.setItem("theme", "dark-mode");
+      menuLink.style.color = "white";
+      navbarBrand.style.color = "white";
+      console.log(navbarBrand);
+    } else {
+      body.classList.replace("dark-mode", "light-mode");
+      navbar.classList.remove("navbar-darkmode");
+      localStorage.setItem("theme", "light-mode");
+      navbarBrand.style.color = "black";
+    }
+  });
+
+  if (!body.classList.contains("dark-mode")) {
+    body.classList.add("light-mode");
   }
 });

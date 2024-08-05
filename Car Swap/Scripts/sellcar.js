@@ -42,22 +42,23 @@ const mileageInput = document.getElementById("mileage");
 const carListingForm = document.getElementById("car-listing-form");
 let profileName = document.getElementById("profile-name");
 let submitBtn = document.getElementById("submit");
+let navbar = document.getElementById("navbar");
+let navbarNav = document.getElementById("navbarNav");
+let navbarBrand = document.getElementById("navbar-brand");
+let menuLink = document.getElementById("menu-link");
 
 let imageUrl = "";
-let userData
+let userData;
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    
-
     get(child(dbRef(database), `users/${user.uid}`))
       .then((snapshot) => {
         if (snapshot.exists()) {
           const user = snapshot.val();
-          userData = user
-          
-          profileName.textContent = `${user.firstName}'s Profile`;
+          userData = user;
 
+          profileName.textContent = `${user.firstName}'s Profile`;
         } else {
           console.log("No data available");
         }
@@ -94,10 +95,8 @@ function uploadImage() {
 
     uploadBytes(storageReference, file)
       .then((snapshot) => {
-        
         getDownloadURL(snapshot.ref)
           .then((url) => {
-            
             imageUrl = url;
             displayImage(url);
           })
@@ -144,12 +143,10 @@ carListingForm.addEventListener("submit", (e) => {
     model: dmodel,
     price: dprice,
     year: dyear,
-    owner: userData.firstName + " "+ userData.lastName
+    owner: userData.firstName + " " + userData.lastName,
   };
 
   addCarToList(carObject);
-
-  // console.log("Test");
 });
 
 submitBtn.addEventListener("click", function () {
@@ -190,3 +187,36 @@ function addCarToList(carObject) {
     console.log("No user is signed in.");
   }
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const switchButton = document.getElementById("flexSwitchCheckDefault");
+  const body = document.body;
+
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    body.classList.add(savedTheme);
+    if (savedTheme === "dark-mode") {
+      switchButton.checked = true;
+    }
+  }
+
+  switchButton.addEventListener("change", () => {
+    if (switchButton.checked) {
+      body.classList.replace("light-mode", "dark-mode");
+      navbar.classList.add("navbar-darkmode");
+      localStorage.setItem("theme", "dark-mode");
+      menuLink.style.color = "white";
+      navbarBrand.style.color = "white";
+      console.log(navbarBrand);
+    } else {
+      body.classList.replace("dark-mode", "light-mode");
+      navbar.classList.remove("navbar-darkmode");
+      localStorage.setItem("theme", "light-mode");
+      navbarBrand.style.color = "black";
+    }
+  });
+
+  if (!body.classList.contains("dark-mode")) {
+    body.classList.add("light-mode");
+  }
+});

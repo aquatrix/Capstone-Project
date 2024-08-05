@@ -8,6 +8,19 @@ nav {
   background-color: #adf7b6;
 }
 
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-mode {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.dark-mode {
+  background-color: #000000;
+}
+
 .main {
   height: 100vh;
   display: flex;
