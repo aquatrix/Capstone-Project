@@ -106,6 +106,49 @@
             <p id="car-description"></p>
           </div>
         </div>
+        <div class="financing-calculator">
+          <div class="calculator">
+            <div class="form-group">
+              <label for="finance-period">Financed over how many months</label>
+              <select id="finance-period">
+                <option value="24">24 months | 4.99% finance rate</option>
+                <option value="48">48 months | 4.99% finance rate</option>
+                <option value="60">60 months | 4.99% finance rate</option>
+                <option value="72">72 months | 4.99% finance rate</option>
+                <option value="84">84 months | 4.99% finance rate</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="payment-frequency"
+                >How often would you like to make payments?</label
+              >
+              <select id="payment-frequency">
+                <option value="weekly">Weekly</option>
+                <option value="bi-weekly">Bi-weekly</option>
+                <option value="monthly">Monthly</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="down-payment">Down payment</label>
+              <input type="number" id="down-payment" value="0.00" />
+            </div>
+
+            <div class="form-group">
+              <label for="trade-in-value">Trade-in value</label>
+              <input type="number" id="trade-in-value" value="0.00" />
+            </div>
+
+            <button id="apply-credit" class="finance-button">
+              Apply for credit
+            </button>
+            <div class="result">
+              <h3>Payment Details</h3>
+              <p id="payment-amount">Payment: $0.00</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
