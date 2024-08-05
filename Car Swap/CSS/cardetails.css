@@ -15,6 +15,20 @@
   justify-content: center;
 }
 
+body {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-mode {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.dark-mode {
+  background-color: #000000;
+  color: #ffffff;
+}
+
 .main-container {
   width: 70%;
   margin-top: 50px;
@@ -70,6 +84,60 @@
   font-size: 16px;
   margin-top: 30px;
   line-height: 35px;
+}
+
+.calculator {
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  border: 2px solid rgb(200, 200, 200);
+  margin-bottom: 50px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group select,
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.finance-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.finance-button:hover {
+  background-color: #0056b3;
+}
+
+.result {
+  margin-top: 20px;
+}
+
+.result h3 {
+  margin: 0 0 10px;
+}
+
+.result p {
+  font-size: 16px;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 900px) {
